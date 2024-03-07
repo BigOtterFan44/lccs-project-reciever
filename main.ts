@@ -1,17 +1,19 @@
-radio.onReceivedString(function (receivedString) {
-    if (Writing == true) {
-        serial.writeLine(receivedString)
+radio.onReceivedNumber(function (receivedNumber) {
+    if (receivedNumber == 1) {
+        serial.writeLine("++++++++++++++++++")
+        serial.writeLine("++++++++++++++++++")
+        Writing = true
+    } else if (receivedNumber == 0) {
+        serial.writeLine("-----------------")
+        serial.writeLine("-----------------")
+        Writing = false
     } else {
     	
     }
 })
-radio.onReceivedValue(function (name, value) {
-    if (value == 1) {
-        serial.writeLine("Start")
-        Writing = true
-    } else if (value == 0) {
-        Writing = false
-        serial.writeLine("Stop")
+radio.onReceivedString(function (receivedString) {
+    if (Writing == true) {
+        serial.writeLine(receivedString)
     } else {
     	
     }
